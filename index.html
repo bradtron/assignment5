@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<!-- Brad Bridge Assign 5 -->    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>BRAD BRIDGE ASSIGNMENT 5</title>
+        <meta name="description" content="An interactive getting started guide for Brackets.">
+        <!--<link rel="stylesheet" href="main.css">-->
+    
+<!--Step 5 Head Code-->
+<!--
+<script> 
+if(window.addEventListener){
+  window.addEventListener('load', init);
+}
+function init(){
+     var x = document.getElementById("myBtn");                    
+     x.onclick = function(){
+        window.alert("I have been clicked");
+     }
+}
+</script> 
+-->   
+        
+    </head>
+    <body>
+        
+<!--        
+COMM644
+Assignment 5
+Practice with Forms and the DOM Event Model (20 points)
+In this part of the assignment you will practice working with form objects and the DOM Event Model:
+-->
+<!--DONE
+1.Add a button to a web page. Use the old school HTML attribute method to attach a click event handler to 
+the button. That handler should call a function that displays the message “I have been clicked” out into an alert box.
+-->
+<!--
+<button onclick="dispMsgHandler()">Click me</button>        
+<script>
+function dispMsgHandler(){
+     window.alert("I have been clicked");
+}               
+</script>
+-->
+        
+<!--DONE        
+2.Add a button to a web page and uniquely ID the button. Write a script that finds the button by its ID. 
+Then use the DOM Element method to associate a function with the onclick event of the button. Again, display the message “I have been clicked” out into an alert box.
+-->
+<!--
+<button id="myBtn">Click me</button>    
+<script>        
+document.getElementById("myBtn").addEventListener("click", function(){
+    window.alert("I have been clicked");
+});
+</script>        
+-->
+                
+<!--DONE      
+3.Add a button to a web page and uniquely ID the button. Write a script that attaches an event listener to
+the button and listens for the click event. When it’s heard, a user-defined function should be called and 
+the message “I have been clicked” should be displayed out into an alert box.
+-->
+<!--
+<button id="myBtn">Click me</button> 
+<script>        
+var btn = document.getElementById("myBtn");
+
+if (btn.addEventListener) {    // For all major browsers, except IE 8 and earlier
+    btn.addEventListener("click", dispMsgHandler);
+} else if (btn.attachEvent) {  // For IE 8 and earlier versions
+    btn.attachEvent("onclick", dispMsgHandler);
+}        
+               
+function dispMsgHandler(){
+     window.alert("I have been clicked");
+}               
+</script> 
+-->
+        
+<!--DONE      
+4.Modify the code within step 3 so that the code that displays an alert box is written directly within a callback function as opposed to a user-defined function.
+-->
+<!--      
+<button id="myBtn">Click me</button> 
+<script>        
+var x = document.getElementById("myBtn");     
+               
+x.onclick = function(){
+     window.alert("I have been clicked");
+}
+</script> 
+--> 
+
+<!--DONE
+5.Modify the code in step 4 so that you can write your script within the <head> tag of the page rather than underneath the button in the markup.
+-->
+<!--
+<button id="myBtn">Click me</button>
+-->
+<!-- script code is in the head section --.
+              
+<!--DONE
+6.Add a link to your web page. Add the text “Visit Google” to the link, set the ID to “redirect” and set the href attribute to http://www.google.com. Now, write a script that alerts the user that they clicked on the link but prevents the browser from also redirecting to the Google site.
+-->  
+<!--
+<a id="redirect" href="http://www.google.com.">Visit Google</a>
+<script>
+var link = document.getElementById("redirect");
+link.onclick = function(event){ 
+   window.alert("You have clicked on the link");
+   event.preventDefault();
+}
+</script>       
+-->
+       
+<!--DONE      
+7.Add a text box and a button to a web page. Add an event listener to the button. When the click event is heard, the button should be disabled, and the text that the user input into the text box should be displayed within an alert box.
+-->
+<!--        
+<textarea id="tbxID">Text Box</textarea>
+<button id="btnID">Click me</button>
+        
+<script>
+var tbox = document.getElementById("tbxID");
+var btn = document.getElementById("btnID");
+        
+if (btn.addEventListener) {    // For all major browsers, except IE 8 and earlier
+    btn.addEventListener("click", xferTextToAlertBox);
+} else if (btn.attachEvent) {  // For IE 8 and earlier versions
+    btn.attachEvent("onclick", xferTextToAlertBox);
+} 
+        
+function xferTextToAlertBox(){
+    btn.disabled = 'true';    
+    window.alert(tbox.value); 
+}       
+</script>        
+-->        
+               
+<!--DONE
+8.Create a new page called newpage.html. You will now have 2 web pages including index.html and 
+newpage.html. Add a button to index.html. When the button is clicked, newpage.html should appear as a popup window at 300 pixels wide by 300 pixels high. As soon as newpage.html loads however, resize the window to 
+500 pixels wide by 300 pixels high. You will need to handle the load event on newpage.html and use a BOM 
+method on newpage.html to accomplish this task.
+-->
+<!--
+<button id="btnID">Click me</button>         
+<script>
+var btn = document.getElementById("btnID");        
+if (btn.addEventListener) {    // For all major browsers, except IE 8 and earlier
+    btn.addEventListener("click", popUpNewPage);
+} else if (btn.attachEvent) {  // For IE 8 and earlier versions
+    btn.attachEvent("onclick", popUpNewPage);
+} 
+function popUpNewPage(){
+    var newWindow = window.open("newpage.html",null,"height=300,width=300,status=yes,toolbar=no,menubar=no,location=no");  
+}
+</script>        
+-->
+        
+<!--DONE
+9.Add two buttons to a web page. Add the text Start to one button and Stop to the other button. Using 
+the BOM .setInterval() method, figure out a way to move display the text “Learning JavaScript is fun!” into the console window every 2 seconds but only when the Start button is clicked. If the user clicks on the Stop button, the console should stop logging the text immediately.
+-->
+<!--
+<button id="startID">START</button>
+<button id="stopID">STOP</button>      
+<script>  
+function dispTextEvery2Secs(){
+    window.console.log("Learning Javascript is fun!");
+}
+var id = setInterval(dispTextEvery2Secs, 2000);
+function stopDisplayingText(){
+    clearInterval(id);
+}         
+var startBtn = document.getElementById("startID");        
+if (startBtn.addEventListener) {    // For all major browsers, except IE 8 and earlier
+    startBtn.addEventListener("click", dispTextEvery2Secs);
+} else if (startBtn.attachEvent) {  // For IE 8 and earlier versions
+    startBtn.attachEvent("onclick", dispTextEvery2Secs);
+}         
+var stopBtn = document.getElementById("stopID");        
+if (stopBtn.addEventListener) {    // For all major browsers, except IE 8 and earlier
+    stopBtn.addEventListener("click", stopDisplayingText);
+} else if (stopBtn.attachEvent) {  // For IE 8 and earlier versions
+    stopBtn.attachEvent("onclick", stopDisplayingText);
+}                
+</script>        
+-->
+       
+<!--DONE
+10.Add a drop down list to a web page. Populate the drop down list with 4 items. Add a button next to the 
+drop down list and set the text to “Select”. When the user clicks the button, the item selected in the drop down list should appear within an alert box.
+-->
+<!--
+<select id="ddID" name="Flavors">
+    <option value="chocolate" >Chocolate </option>
+    <option value="vanilla"   >Vanilla   </option>
+    <option value="strawberry">Strawberry</option>
+    <option value="caramel"   >Caramel   </option>
+</select>
+<button id="btnID">Select</button>        
+<script>
+var selBtn = document.getElementById("btnID");        
+if (selBtn.addEventListener) {    // For all major browsers, except IE 8 and earlier
+    selBtn.addEventListener("click", dispSelectedItem);
+} else if (selBtn.attachEvent) {  // For IE 8 and earlier versions
+    selBtn.attachEvent("onclick", dispSelectedItem);
+}         
+var dd = document.getElementById("ddID");
+//var e = document.getElementById("ddlViewBy");
+//var strUser = e.options[e.selectedIndex].text;        
+function dispSelectedItem(){
+    var sSelectedValue = dd.options[dd.selectedIndex].value;
+    window.alert( sSelectedValue ); 
+}               
+</script>        
+-->
+        
+    </body>
+</html>
